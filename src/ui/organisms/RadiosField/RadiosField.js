@@ -6,9 +6,10 @@ import { FieldContainer, HBox, Row, VBox } from '@ui/atoms'
 import { InputError, InputTip } from '@ui/atoms/Typography'
 import { FormLabel, RadioWithText } from '@ui/molecules'
 
-export const GenderField = withTheme(
+export const RadiosField = withTheme(
   ({
     theme,
+    label,
     firstValue,
     secondValue,
     firstDisabled,
@@ -21,7 +22,7 @@ export const GenderField = withTheme(
     tip,
   }) => (
     <FieldContainer>
-      <FormLabel>Пол</FormLabel>
+      <FormLabel>{label}</FormLabel>
       <HBox height={theme.paddings.half} />
       <Row>
         <RadioWithText
@@ -31,7 +32,7 @@ export const GenderField = withTheme(
           disabled={firstDisabled}
           onPress={typeof children === 'string' ? undefined : onPress}
         />
-        <VBox />
+        <VBox width={theme.paddings.main} />
         <RadioWithText
           children={secondChildren}
           value={secondValue}
@@ -49,7 +50,7 @@ export const GenderField = withTheme(
   ),
 )
 
-GenderField.propTypes = {
+RadiosField.propTypes = {
   firstValue: PropTypes.string,
   secondValue: PropTypes.string,
   firstDisabled: PropTypes.bool,

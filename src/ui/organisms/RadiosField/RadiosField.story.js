@@ -2,10 +2,11 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { text, boolean } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
-import { GenderField } from './GenderField'
+import { RadiosField } from './RadiosField'
 
-storiesOf('ui/organisms', module).add('GenderField', () => (
-  <GenderField
+storiesOf('ui/organisms', module).add('RadiosField', () => (
+  <RadiosField
+    label={text('label', 'Пол')}
     firstChildren={text('first value', 'муж.')}
     secondChildren={text('second value', 'жен.')}
     firstValue={boolean('first checked', false)}

@@ -1,3 +1,3 @@
 export { DeliveryTime } from './DeliveryTime/DeliveryTime'
 export { CountriesList } from './CountriesList/CountriesList'
-export { GenderField } from './GenderField/GenderField'
+export { RadiosField } from './RadiosField/RadiosField'
