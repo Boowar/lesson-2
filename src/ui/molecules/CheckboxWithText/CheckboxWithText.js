@@ -18,9 +18,11 @@ export const CheckboxWithText = ({
   onPress,
   error,
   disabled,
+  name,
 }) => (
   <Container onClick={typeof children === 'string' ? onPress : undefined}>
     <CheckboxField
+      name={name}
       value={value}
       error={error}
       disabled={disabled}
@@ -38,6 +40,7 @@ export const CheckboxWithText = ({
 )
 
 CheckboxWithText.propTypes = {
+  name: PropTypes.string,
   children: PropTypes.node,
   value: PropTypes.bool,
   onPress: PropTypes.func.isRequired,
