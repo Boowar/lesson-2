@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { text, select } from '@storybook/addon-knobs'
+import { text } from '@storybook/addon-knobs'
 import { action } from '@storybook/addon-actions'
 import { DeliveryTime } from './DeliveryTime'
 

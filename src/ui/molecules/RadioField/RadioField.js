@@ -2,23 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { withTheme } from '@ui/theme'
-import { IconCheckboxOn, IconCheckboxOff } from '@ui/atoms'
+import { IconRadioOn, IconRadioOff } from '@ui/atoms'
 
-export const CheckboxField = withTheme(
+export const RadioField = withTheme(
   ({ value, disabled, error, onPress, theme }) => (
     <div onClick={onPress && !disabled ? onPress : undefined}>
       {value ? (
-        <IconCheckboxOn
-          color={disabled ? theme.pallete.whiteSmoke : undefined}
-        />
+        <IconRadioOn color={disabled ? theme.pallete.whiteSmoke : undefined} />
       ) : (
-        <IconCheckboxOff color={error ? theme.pallete.errorColor : undefined} />
+        <IconRadioOff color={error ? theme.pallete.errorColor : undefined} />
       )}
     </div>
   ),
 )
 
-CheckboxField.propTypes = {
+RadioField.propTypes = {
   value: PropTypes.bool,
   error: PropTypes.string,
   disabled: PropTypes.bool,
