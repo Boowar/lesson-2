@@ -6,7 +6,8 @@ import { RadioField } from './RadioField'
 
 storiesOf('ui/molecules', module).add('RadioField', () => (
   <RadioField
-    value={boolean('value', false)}
+    value={text('value', 'some')}
+    checked={boolean('checked', false)}
     error={text('error', '')}
     disabled={boolean('disabled', false)}
     onPress={action('onPress')}

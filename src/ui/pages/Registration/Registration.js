@@ -9,6 +9,7 @@ import {
   TextareaField,
   CheckboxWithText,
   ButtonAccent,
+  RadioWithText,
 } from '@ui/molecules'
 import { RadiosField } from '@ui/organisms'
 import { Formik } from 'formik'
@@ -45,7 +46,9 @@ const schema = Yup.object().shape({
       { excludeEmptyString: true, message: 'wrong Email' },
     )
     .required('Please enter your Email'),
-  gender: Yup.string() /* .required('Please select your gender') */,
+  gender: Yup.string()
+    .oneOf(['муж.', 'жен.'], 'Must Accept Terms and Conditions')
+    .required('Please select your gender'),
   about: Yup.string()
     .min(5, 'min 5 characters')
     .max(200, 'max 200 characters')
@@ -102,15 +105,15 @@ export const Registration = props => {
               onBlur={props.handleBlur}
               error={props.touched.Email && props.errors.Email}
             />
-            <RadiosField
+            <RadioWithText
               name="gender"
               label="Пол"
-              firstChildren="муж."
-              secondChildren="жен."
-              onPress={value => {
-                console.log('radio', value)
-                props.setFieldValue('gender', value)
-              }}
+              infos={[
+                { value: 'male', label: 'муж.' },
+                { value: 'female', label: 'жен.' },
+              ]}
+              value={props.values.gender}
+              onPress={value => props.setFieldValue('gender', value)}
               error={props.touched.gender && props.errors.gender}
             />
             <TextareaField
@@ -122,7 +125,7 @@ export const Registration = props => {
               onBlur={props.handleBlur}
               error={props.touched.about && props.errors.about}
             />
-            <HBox height="19" />
+            <HBox height={19} />
             <CheckboxWithText
               name="term"
               children="Со всеми условиями согласен"
@@ -133,7 +136,7 @@ export const Registration = props => {
               }}
               error={props.touched.term && props.errors.term}
             />
-            <HBox height="24" />
+            <HBox height={24} />
             <ButtonAccent
               disabled={!props.isValid}
               children="Отправить"
@@ -145,5 +148,3 @@ export const Registration = props => {
     </PageTemplate>
   )
 }
-
-Registration.propTypes = {}
