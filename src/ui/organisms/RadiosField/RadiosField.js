@@ -8,6 +8,7 @@ import { FormLabel, RadioWithText } from '@ui/molecules'
 
 export const RadiosField = withTheme(
   ({
+    name,
     theme,
     label,
     firstValue,
@@ -26,6 +27,7 @@ export const RadiosField = withTheme(
       <HBox height={theme.paddings.half} />
       <Row>
         <RadioWithText
+          name={name}
           children={firstChildren}
           value={firstValue}
           error={firstError}
@@ -34,6 +36,7 @@ export const RadiosField = withTheme(
         />
         <VBox width={theme.paddings.main} />
         <RadioWithText
+          name={name}
           children={secondChildren}
           value={secondValue}
           error={secondError}
@@ -51,6 +54,7 @@ export const RadiosField = withTheme(
 )
 
 RadiosField.propTypes = {
+  name: PropTypes.string,
   firstValue: PropTypes.string,
   secondValue: PropTypes.string,
   firstDisabled: PropTypes.bool,

@@ -21,7 +21,7 @@ const initialValues = {
   Email: '',
   about: '',
   gender: '',
-  term: '',
+  term: false,
 }
 
 const schema = Yup.object().shape({
@@ -45,12 +45,14 @@ const schema = Yup.object().shape({
       { excludeEmptyString: true, message: 'wrong Email' },
     )
     .required('Please enter your Email'),
-  gender: Yup.boolean(),
+  gender: Yup.string() /* .required('Please select your gender') */,
   about: Yup.string()
     .min(5, 'min 5 characters')
     .max(200, 'max 200 characters')
     .required('Please tell about yourself'),
-  term: Yup.boolean(),
+  term: Yup.boolean()
+    .oneOf([true], 'Must Accept Terms and Conditions')
+    .required('Please accept terms'),
 })
 
 export const Registration = props => {
@@ -105,7 +107,10 @@ export const Registration = props => {
               label="Пол"
               firstChildren="муж."
               secondChildren="жен."
-              onPress={value => props.setFieldValue('gender', value)}
+              onPress={value => {
+                console.log('radio', value)
+                props.setFieldValue('gender', value)
+              }}
               error={props.touched.gender && props.errors.gender}
             />
             <TextareaField
@@ -122,7 +127,11 @@ export const Registration = props => {
               name="term"
               children="Со всеми условиями согласен"
               value={props.values.term}
-              onChange={value => props.setFieldValue('term', value)}
+              onPress={() => {
+                props.values.term = !props.values.term
+                props.setFieldValue('term', props.values.term)
+              }}
+              error={props.touched.term && props.errors.term}
             />
             <HBox height="24" />
             <ButtonAccent
