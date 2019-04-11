@@ -11,7 +11,6 @@ import {
   ButtonAccent,
   RadioWithText,
 } from '@ui/molecules'
-import { RadiosField } from '@ui/organisms'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 
@@ -46,9 +45,7 @@ const schema = Yup.object().shape({
       { excludeEmptyString: true, message: 'wrong Email' },
     )
     .required('Please enter your Email'),
-  gender: Yup.string()
-    .oneOf(['муж.', 'жен.'], 'Must Accept Terms and Conditions')
-    .required('Please select your gender'),
+  gender: Yup.string().required('Please select your gender'),
   about: Yup.string()
     .min(5, 'min 5 characters')
     .max(200, 'max 200 characters')
